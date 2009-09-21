@@ -63,6 +63,7 @@ module PDoc
       Instance methods:    #{@parser_output.instance_methods.length}
       Class properties:    #{@parser_output.klass_properties.length}
       Instance properties: #{@parser_output.instance_properties.length}
+      TKCore properties:   #{@parser_output.tkcore_properties.length}
 
       EOS
     end

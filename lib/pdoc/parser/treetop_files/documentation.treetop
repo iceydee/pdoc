@@ -11,7 +11,7 @@ grammar Documentation
   end
   
   rule doc_instance
-    section_doc / klass_method_doc / instance_method_doc / klass_property_doc / instance_property_doc / utility_doc / constructor_doc / klass_doc / mixin_doc / constant_doc / namespace_doc
+    section_doc / klass_method_doc / instance_method_doc / klass_property_doc / tkcore_property_doc / instance_property_doc / utility_doc / constructor_doc / klass_doc / mixin_doc / constant_doc / namespace_doc
   end
   
   rule section_doc
@@ -40,6 +40,10 @@ grammar Documentation
   
   rule klass_property_doc
     start line ebnf:klass_property text comment_end <KlassProperty>
+  end
+  
+  rule tkcore_property_doc
+    start line ebnf:tkcore_property text comment_end <TKCoreProperty>
   end
   
   rule instance_property_doc

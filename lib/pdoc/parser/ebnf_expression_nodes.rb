@@ -146,6 +146,36 @@ module EbnfExpression
     end
   end
   
+  class TKCoreProperty < Base
+    def accessor
+      instance_accessor
+    end
+    
+    def js_namespace
+      accessor.js_namespace
+    end
+    
+    def js_variable
+      accessor.js_variable
+    end
+    
+    def full_name
+      accessor.text_value
+    end
+    
+    def getter_method
+      "#{namespace}#get#{name.capitalize}() -> #{tkcore_property_type.text_value[2..-1]}"
+    end
+    
+    def setter_method
+      "#{namespace}#set#{name.capitalize}(#{tkcore_property_type.text_value[2..-1]}) -> void"
+    end
+    
+    def signature
+      "#{namespace}##{name}#{tkcore_property_type}"
+    end
+  end
+  
   class InstanceProperty < Base
     def accessor
       instance_accessor

@@ -1,7 +1,7 @@
 grammar EbnfExpression
   include EbnfArguments
   rule ebnf
-    klass_method / instance_method / klass_property / instance_property / utility / constructor / mixin / klass / constant / namespace 
+    klass_method / instance_method / klass_property / tkcore_property / instance_property / utility / constructor / mixin / klass / constant / namespace 
   end
   
   rule mixin
@@ -40,6 +40,10 @@ grammar EbnfExpression
     space* js_namespace return_value <KlassProperty>
   end
   
+  rule tkcore_property
+    space* instance_accessor tkcore_property_type <TKCoreProperty>
+  end
+  
   rule instance_property
     space* instance_accessor return_value <InstanceProperty>
   end
@@ -66,5 +70,9 @@ grammar EbnfExpression
 
   rule return_value
     space* '->' space* value:(char)+
+  end
+  
+  rule tkcore_property_type
+    ':' space* value:(char)+
   end
 end

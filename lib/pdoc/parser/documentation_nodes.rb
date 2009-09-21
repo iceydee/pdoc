@@ -49,6 +49,11 @@ module Documentation
     def klass_properties
       select { |e| e.is_a?(KlassProperty) }
     end
+    
+    # return an array of all documented TKCoreProperty instances.
+    def tkcore_properties
+      select { |e| e.is_a?(TKCoreProperty) }
+    end
 
     # return an array of all documented InstanceProperty instances.
     def instance_properties
@@ -496,6 +501,20 @@ module Documentation
     end
   end
   
+  class TKCoreProperty < Property
+    def type
+      "tkcore property"
+    end
+    
+    def getter_method
+      ebnf.getter_method
+    end
+    
+    def setter_method
+      ebnf.setter_method
+    end
+  end
+  
   class InstanceProperty < Property
     def type
       "instance property"
@@ -537,6 +556,11 @@ module Documentation
     # Returns a sorted array of KlassMethod
     def klass_methods
       root.klass_methods.select { |e| e.namespace === self }.sort_by { |e| e.name }
+    end
+    
+    # Returns a sorted array of TKCoreProperty
+    def tkcore_properties
+      root.tkcore_properties.select { |e| e.namespace === self }.sort_by { |e| e.name }
     end
 
     # Returns a sorted array of InstanceProperty

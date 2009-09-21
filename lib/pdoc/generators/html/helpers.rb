@@ -98,7 +98,6 @@ module PDoc
           end
 
           def auto_link_content(content)
-            return '' if content.nil?
             content.gsub!(/\[\[([a-zA-Z]+)\s+section\]\]/) do |m|
               result = auto_link(section_from_name($1), false)
               result
@@ -127,7 +126,10 @@ module PDoc
           def method_synopsis(object)
             result = []
             result << '<pre class="syntax"><code class="ebnf">'
-            if object.is_a?(Documentation::Property)
+            if object.is_a?(Documentation::TKCoreProperty)
+              result << "#{object.getter_method}<br />"
+              result << "#{object.setter_method}"
+            elsif object.is_a?(Documentation::Property)
               result << "#{object.signature}"
             else
               ebnfs = object.ebnf_expressions.dup
