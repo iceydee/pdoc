@@ -73,6 +73,6 @@ grammar EbnfExpression
   end
   
   rule tkcore_property_type
-    ':' space* value:(char)+
+    space* ':' space* value:(char)+
   end
 end

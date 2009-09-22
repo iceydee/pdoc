@@ -127,8 +127,8 @@ module PDoc
             result = []
             result << '<pre class="syntax"><code class="ebnf">'
             if object.is_a?(Documentation::TKCoreProperty)
-              result << "#{object.getter_method}<br />"
-              result << "#{object.setter_method}"
+              result << "#{object.namespace_string}##{object.getter_method}() &rArr; #{auto_link(object.property_type, false)}<br />"
+              result << "#{object.namespace_string}##{object.setter_method}(#{auto_link(object.property_type, false)}) &rArr; void"
             elsif object.is_a?(Documentation::Property)
               result << "#{object.signature}"
             else

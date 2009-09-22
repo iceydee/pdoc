@@ -506,6 +506,10 @@ module Documentation
       "tkcore property"
     end
     
+    def property_type
+      ebnf.property_type
+    end
+    
     def getter_method
       ebnf.getter_method
     end

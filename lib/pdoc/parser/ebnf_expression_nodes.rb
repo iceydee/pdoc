@@ -163,12 +163,16 @@ module EbnfExpression
       accessor.text_value
     end
     
+    def property_type
+      "#{tkcore_property_type.text_value[1..-1].strip}"
+    end
+    
     def getter_method
-      "#{namespace}#get#{name.capitalize}() -> #{tkcore_property_type.text_value[2..-1]}"
+      "get#{name[0, 1].upcase}#{name[1..-1]}"
     end
     
     def setter_method
-      "#{namespace}#set#{name.capitalize}(#{tkcore_property_type.text_value[2..-1]}) -> void"
+      "set#{name[0, 1].upcase}#{name[1..-1]}"
     end
     
     def signature
